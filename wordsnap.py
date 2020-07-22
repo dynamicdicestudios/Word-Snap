@@ -1,17 +1,26 @@
 import pytesseract, pyperclip    
-from PIL import Image     
+from PIL import ImageGrab, Image   
 
-def main(file):
-    #file = 'substinces.PNG'
-    # opening an image from the source path 
-    img = Image.open()
+def main():
+    try:
+        file = 'image.PNG'
+        # opening an image from the source path 
+        img = ImageGrab.grabclipboard()
 
-    # path where the tesseract module is installed 
-    pytesseract.pytesseract.tesseract_cmd ='C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
-    # converts the image to result and saves it into result variable 
-    result = pytesseract.image_to_string(img)
+        img.save(file, 'PNG')
 
-    pyperclip.copy(result)
+        image = Image.open(file)
+        # path where the tesseract module is installed 
+        pytesseract.pytesseract.tesseract_cmd ='C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
+        # converts the image to result and saves it into result variable 
+        result = pytesseract.image_to_string(image)
+
+        pyperclip.copy(result)
+    except:
+        print("no image")
+        return False
+
+main()
 
     
         
