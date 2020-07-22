@@ -7,15 +7,27 @@ root = Tk()
 root.title("Word Snap")
 root.geometry("300x180+500+250")
 
-def stop():
-    grab_text = False
+warning = Label(root, text="*Ensure an image has been added to\n the clipboard",
+                  font=("time new roman",10), fg='red').place(x=40,y=110)
+warning.config(state=DISABLED)
 
 def start():
-    grab_text = True
-    while grab_text:
-        grab_text = main()
+    warning.config(state=DISABLED)
+    worked = main()
+    if worked == False:
+        warning.config(state="normal")
+        
 
-Button(root, text='Stop', width =5,command=root.destroy).place(x=20,y=130)
-Button(root, text='Start',width=5, command=start).place(x=230,y=130)
+Button(root, text='Convert', width=10,command=start).place(x=20,y=145)
+Button(root, text='Quit',width=5, command=root.destroy).place(x=230,y=145)
+
+Label(root,
+      text="Add an image to the\n clipboard, then click start to\n have the image\
+ on the clipboard\n replaced with the text on the image.",
+      font=("time new roman",10),
+      fg='black').place(x=30,y=30)
+
+
+
 
 mainloop()
