@@ -1,20 +1,33 @@
-import pytesseract, pyperclip    
-from PIL import ImageGrab, Image   
+from tkinter import *
+from convert import convert
 
-def convert():
-    try:
-        file = 'image.PNG'
-        # opening an image from the source path 
-        img = ImageGrab.grabclipboard()
+grab_text = False
 
-        img.save(file, 'PNG')
+root = Tk()
+root.title("Word Snap")
+root.geometry("300x180+500+250")
 
-        image = Image.open(file)
-        # path where the tesseract module is installed 
-        pytesseract.pytesseract.tesseract_cmd ='C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
-        # converts the image to result and saves it into result variable 
-        result = pytesseract.image_to_string(image)
+warning = Label(root, text="",
+                  font=("time new roman",10), fg='red')
+warning.pack()
+warning.place(x=30,y=105)
+warning.configure(text="")
 
-        pyperclip.copy(result)
-    except AttributeError:
-        return False
+def start():
+    #warning.config(state=DISABLED)
+    worked = convert()
+    if worked == False:
+        warning.configure(text="*Ensure a new image has been added to\n the clipboard.")
+    else:
+        warning.configure(text="")
+        
+
+Button(root, text='Convert', width=10,command=start).place(x=110,y=145)
+
+Label(root,
+      text="Add an image to the\n clipboard, then click convert to\n have the image\
+ on the clipboard\n replaced with the text on the image.",
+      font=("time new roman",10),
+      fg='black').place(x=40,y=25)
+
+mainloop()
