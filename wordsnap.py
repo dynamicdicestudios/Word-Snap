@@ -1,7 +1,7 @@
 import pytesseract, pyperclip    
 from PIL import ImageGrab, Image   
 
-def main():
+def convert():
     try:
         file = 'image.PNG'
         # opening an image from the source path 
@@ -18,4 +18,3 @@ def main():
         pyperclip.copy(result)
     except AttributeError:
         return False
-        #print("no image")
