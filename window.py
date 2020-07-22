@@ -13,9 +13,9 @@ def stop():
 def start():
     grab_text = True
     while grab_text:
-        main()
+        grab_text = main()
 
 Button(root, text='Stop', width =5,command=root.destroy).place(x=20,y=130)
-Button(root, text='Start',width=5, command=grab_text).place(x=230,y=130)
+Button(root, text='Start',width=5, command=start).place(x=230,y=130)
 
 mainloop()
