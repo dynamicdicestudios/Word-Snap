@@ -16,12 +16,6 @@ def main():
         result = pytesseract.image_to_string(image)
 
         pyperclip.copy(result)
-    except:
-        print("no image")
+    except AttributeError:
         return False
-
-main()
-
-    
-        
-    
+        #print("no image")
