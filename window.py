@@ -18,8 +18,7 @@ def start():
         warning.config(state="normal")
         
 
-Button(root, text='Convert', width=10,command=start).place(x=20,y=145)
-Button(root, text='Quit',width=5, command=root.destroy).place(x=230,y=145)
+Button(root, text='Convert', width=10,command=start).place(x=125,y=145)
 
 Label(root,
       text="Add an image to the\n clipboard, then click start to\n have the image\
