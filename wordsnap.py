@@ -11,7 +11,6 @@ warning = Label(root, text="",
                   font=("time new roman",10), fg='red')
 warning.pack()
 warning.place(x=30,y=105)
-warning.configure(text="")
 
 def start():
     #warning.config(state=DISABLED)
