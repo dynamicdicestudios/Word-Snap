@@ -16,8 +16,7 @@ def convert():
         result = pytesseract.image_to_string(image)
 
         pyperclip.copy(result)
-
-        if len(result) == 0:
-            return None
+        #if len(result) == 0:
+            #return None
     except AttributeError:
         return False
