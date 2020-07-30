@@ -1,5 +1,6 @@
 from tkinter import *
 from convert import convert
+from multiprocessing.pool import ThreadPool
 
 root = Tk()
 root.title("Word Snap")
@@ -17,11 +18,15 @@ success.place(x=30,y=120)
 
 def start():
     success.configure(text="")
-    worked = convert()
+    pool = ThreadPool(processes=1)
+    
+    async_result = pool.apply_async(convert)
+    worked = async_result.get()
+    
     if worked == False:
         warning.configure(text="*Ensure a new image has been added to\n the clipboard.")
-    elif worked == None:
-        warning.configure(text="*No text could be found on the image.")
+    #elif worked == None:
+        #warning.configure(text="*No text could be found on the image.")
     else:
         warning.configure(text="")
         success.configure(text="Finished converting! Check your clipboard.")
